@@ -1,4 +1,4 @@
-
+'use strict';
 var shoppingItemTemplate = (
   '<li class="js-shopping-item">' +
     '<p><span class="shopping-item js-shopping-item-name"></span></p>' +
@@ -34,7 +34,7 @@ var SHOPPING_LIST_URL = serverBase + 'shopping-list';
 
 
 function getAndDisplayRecipes() {
-  console.log('Retrieving recipes')
+  console.log('Retrieving recipes');  
   $.getJSON(RECIPES_URL, function(recipes) {
     console.log('Rendering recipes');
     var recipesElement = recipes.map(function(recipe) {
@@ -47,7 +47,8 @@ function getAndDisplayRecipes() {
       });
       return element;
     });
-    $('.js-recipes').html(recipesElement)
+    $('.js-recipes').html(recipesElement);
+    
   });
 }
 

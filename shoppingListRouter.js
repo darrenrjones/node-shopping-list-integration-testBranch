@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const router = express.Router();
 
@@ -16,6 +18,7 @@ ShoppingList.create('peppers', false);
 // all current ShoppingList items
 router.get('/', (req, res) => {
   res.json(ShoppingList.get());
+  
 });
 
 
