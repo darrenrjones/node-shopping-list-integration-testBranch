@@ -176,12 +176,20 @@ describe('Recipe List', function() {
           .send(recipeUpdateData);
       })
       .then(function(res){
-        expect(res).to.have.status(204);         
+        expect(res).to.have.status(204);               
       });      
   });
 
 
-  // it('should delete and item on DELETE', function() {
-      
-  // });
+  it('should delete an item on DELETE', function() {
+    return chai.request(app)
+      .get('/recipes')
+      .then(function(res){
+        return chai.request(app)
+          .delete(`/recipes/${res.body[0].id}`);        
+      })
+      .then(function(res){
+        expect(res).to.have.status(204);
+      });
+  });
 });
