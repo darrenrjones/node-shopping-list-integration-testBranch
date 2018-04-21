@@ -146,7 +146,8 @@ describe('Recipe List', function() {
 
 
   // it('should create an item on POST', function() {
-      
+  //   return chai.request(app)
+  //     .post('/recipes')
   // });
 
 
