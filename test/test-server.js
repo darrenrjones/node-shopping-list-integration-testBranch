@@ -145,15 +145,40 @@ describe('Recipe List', function() {
   });
 
 
-  // it('should create an item on POST', function() {
-  //   return chai.request(app)
-  //     .post('/recipes')
-  // });
+  it('should create an item on POST', function() {
+    const recipeTestPost = {name: 'food stuff',ingredients: ['stringfood','string cheese']};
+    return chai.request(app)
+      .post('/recipes')
+      .send(recipeTestPost)
+      .then(function(res){
+        expect(res).to.have.status(201);
+        expect(res).to.be.json;
+        expect(res).to.be.an('object');
+        expect(res.body).to.include.keys('id', 'name', 'ingredients');
+        expect(res.body.id).to.not.equal(null);
+      });
+  });
 
 
-  // it('should edit an item on PUT', function() {
-      
-  // });
+  it('should edit an item on PUT', function() {
+    const recipeUpdateData = {
+      name: 'tacos',
+      ingredients: ['beef',' cheese','tortillas']
+    };
+
+    return chai.request(app)
+      .get('/recipes')
+      .then(function(res){
+        recipeUpdateData.id = res.body[0].id;
+
+        return chai.request(app)
+          .put(`/recipes/${recipeUpdateData.id}`)
+          .send(recipeUpdateData);
+      })
+      .then(function(res){
+        expect(res).to.have.status(204);         
+      });      
+  });
 
 
   // it('should delete and item on DELETE', function() {
